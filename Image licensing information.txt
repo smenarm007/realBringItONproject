@@ -1,0 +1,11 @@
+All of the following URL's are where we found our images used in this project. all URL's lead to sites where content is licensed under CC0 creative commons licensing and are free for public use for any project, be it commercial or personal.
+We checked the licensing for each image and we found that all were classified under Creative Commons 0.
+We were given permission to use the Keep Kids Alive Drive 25 Logo by the owner of the company Tom Everson. See the Email screenshot also present in the github repository for proof of permission.
+
+https://pixabay.com/en/sign-speed-limit-25-miles-road-sign-161176/
+
+https://static.pexels.com/photos/230557/pexels-photo-230557.jpeg
+
+https://pixabay.com/en/car-safety-law-seat-belt-buckle-44483/
+
+https://commons.wikimedia.org/wiki/File:Canada_Stop_sign.svg
