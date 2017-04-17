@@ -1,0 +1,79 @@
+<html>
+   <head>
+       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+       <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjNcF2rSrFntiFpObvD0vLUQJ-KAjMVks&callback=initMap">
+    </script>
+       <script>	  
+         /* global $ */
+         /* global navigator */
+         var lat;
+         var lng;
+         if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(function(position) {
+					
+						lat = position.coords.latitude;
+						lng = position.coords.longitude;
+				});
+         }
+         
+		//functions for buttons to send data to the page's php document	
+         $(document).ready(function(){
+			$("#button1").click(function(){
+			        var Offense = "seatbelt";
+    				var Latitude = lng;
+					var Longitude = lat;
+				    window.location.href = "interactive_page.php?name=" + Offense + "&Lat=" + Latitude + "&Long=" + Longitude; 
+			});
+			$("#button2").click(function(){
+				var Offense = "speeding";
+    			var Latitude = lng;
+				var Longitude = lat;
+				window.location.href = "interactive_page.php?name=" + Offense + "&Lat=" + Latitude + "&Long=" + Longitude; 
+			});
+			$("#button3").click(function(){
+				var Offense = "stopsign";
+    			var Latitude = lng;
+				var Longitude = lat;
+				window.location.href = "interactive_page.php?name=" + Offense + "&Lat=" + Latitude + "&Long=" + Longitude; 
+			});
+			$("#button4").click(function(){
+				var Offense = "distracted";
+    			var Latitude = lng;
+				var Longitude = lat;
+				window.location.href = "interactive_page.php?name=" + Offense + "&Lat=" + Latitude + "&Long=" + Longitude; 
+			});
+			$("p").on("swipe",function(){
+				$(this).hide();
+			});  
+		});
+       </script>
+	   <style>
+			.img {
+				display: block;
+				background-color: red;
+			}
+			.button
+			{
+				max-width: 50%;
+				height: auto;
+			}
+			.footer{ 
+       position: fixed;     
+       text-align: center;    
+       bottom: 0px; 
+       width: 100%;
+   } 
+	   </style>
+   </head> 
+   <body>
+
+   		<img id = "img" src = "download.jpg" align = "center" class = "img">
+   		<h1 style="text-align:center">Choose the type of infraction that you would like to report.</h1>
+		<img src = "seatbelts.png" alt = "seatbelts" class = "button" id = "button1" style = "width:37.5%">
+		<img src = "speeding.png" alt = "speeding" class = "button" id = "button2" style = "width:37.5%">
+		<img src = "stopsign.png" alt = "stopsign" class = "button" id = "button3" style = "width:37.5%">
+		<img src = "distracted.jpg" alt = "distracted" class = "button" id = "button4" style = "width:37.5%">	
+		<div class="footer" style="width: auto; height:auto;">Keep Kids Alive Drive 25® is a registered trademark of Keep Kids Alive Drive 25, 12418 C Street, Omaha, Nebraska, 68144 used with permission. No other entities may use these or similar marks without prior permission. Call 402-334-1391 or e-mail kkad25@kkad25.org for information.</div>
+   </body>
+</html>

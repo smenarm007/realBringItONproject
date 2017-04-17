@@ -1,0 +1,484 @@
+<html>
+<head>
+	<title>Contact us</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<style>
+body {
+    font-family: "Lato", sans-serif;
+    transition: background-color .5s;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+	float: left;
+}
+
+img {
+	height: auto;
+	max-width: 50%;
+	background-color: red;
+	position: relative;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+.footer{ 
+       position: fixed;     
+       text-align: center;    
+       bottom: 0px; 
+       width: 100%;
+   } 
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+	float: left;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+  .nicebox {;}
+}
+      html, body, #map {height: 80%; padding: 5px 10px; overflow: hidden; width: 80%}
+        .nicebox {
+          position: absolute;
+          text-align: center;
+          font-family: "Roboto", "Arial", sans-serif;
+          font-size: 13px;
+          z-index: 5;
+          box-shadow: 0 4px 6px -4px #333;
+          padding: 5px 10px 50px;
+          background: rgb(255,255,255);
+          background: linear-gradient(to bottom,rgba(255,255,255,1) 0%,rgba(245,245,245,1) 100%);
+          border: rgb(229, 229, 229) 1px solid;
+        }
+        #map {
+            margin-left: 58px;
+            max-width: 1500px;
+            height: 300px;
+        }
+        #controls {
+          top: 10px;
+          max-width: 360px;
+          height: auto;
+          position: absolute;
+          right: 10%;
+        }
+        #data-box {
+          top: 10px;
+          left: 500px;
+          height: auto;
+          line-height: 45px;
+          display: none;
+        }
+        #census-variable {
+          max-width: 240px;
+          height: auto;
+        }
+        #legend { display: flex; display: -webkit-box; padding-top: 7px }
+        .color-key {
+          background: linear-gradient(to right,
+            hsl(5, 69%, 54%) 0%,
+            hsl(29, 71%, 51%) 17%,
+            hsl(54, 74%, 47%) 33%,
+            hsl(78, 76%, 44%) 50%,
+            hsl(102, 78%, 41%) 67%,
+            hsl(127, 81%, 37%) 83%,
+            hsl(151, 83%, 34%) 100%);
+          flex: 1;
+          -webkit-box-flex: 1;
+          margin: 0 5px;
+          text-align: left;
+          font-size: 1.0em;
+          line-height: 1.0em;
+        }
+        #data-value { font-size: 2.0em; font-weight: bold }
+        #data-label { font-size: 2.0em; font-weight: normal; padding-right: 10px; }
+        #data-label:after { content: ':' }
+        #data-caret { margin-left: -5px; display: none; font-size: 14px; width: 14px}
+</style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjNcF2rSrFntiFpObvD0vLUQJ-KAjMVks&callback=initMap">
+    </script>
+</head>
+<body>
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="interactive_page.html">Report an Infaction</a>
+  <a href="home-page.html">Home</a>
+  <a href="#">About</a>
+  <a href="contactus.html">Contact</a>
+  <a href="Table.html">Data Table</a>
+</div>
+
+<div id="main">
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+</div>
+
+<img id = "img" src = "download.jpg" align = "center" class = "img">
+<h1> Visual Map of the Data</h1>
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+	document.getElementById("img").style.backgroundColor = "rgba(255,0,0,0.4)";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+    document.body.style.backgroundColor = "white";
+	document.getElementById("img").style.backgroundColor = "rgba(255,0,0,1)";
+}
+</script>
+
+    <div id="map"></div>
+    <script>
+    /*global $*/
+      var mapStyle = [
+  {
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#212121"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.icon",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#757575"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.text.stroke",
+    "stylers": [
+      {
+        "color": "#212121"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#757575"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.country",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#9e9e9e"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.land_parcel",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.locality",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#bdbdbd"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.province",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#00ffff"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#757575"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#181818"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#616161"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "elementType": "labels.text.stroke",
+    "stylers": [
+      {
+        "color": "#1b1b1b"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "color": "#2c2c2c"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#8a8a8a"
+      }
+    ]
+  },
+  {
+    "featureType": "road.arterial",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#373737"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#3c3c3c"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway.controlled_access",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#4e4e4e"
+      }
+    ]
+  },
+  {
+    "featureType": "road.local",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#616161"
+      }
+    ]
+  },
+  {
+    "featureType": "transit",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#757575"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#000000"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#3d3d3d"
+      }
+    ]
+  }
+]
+/* Making the map */
+var map;
+var mapPoints;
+var numberOfPoints;
+function ajax1(){
+  
+return $.ajax({
+    
+    url: "https://testing-for-web-app-smenarm007.c9users.io/home.php",
+    type: 'GET',
+    data: {Offenses:[], Latitudes:[], Longitudes:[]},
+    success: function (data) {
+        if (data) {
+            mapPoints = data;
+            mapPoints = JSON.parse(mapPoints);
+            console.log(mapPoints.Latitudes[0]);
+            numberOfPoints = mapPoints.Offenses.length;
+        }},
+        
+    error: function(){
+      alert("error"); 
+    }
+});
+}
+
+      
+
+
+function initMap() {
+        /* global google */
+        // load the map
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 6,
+          center: {lat: 40, lng: -100},
+          mapTypeControl: true,
+          mapTypeControlOptions: {
+              style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+              position: google.maps.ControlPosition.TOP_CENTER
+          },
+          zoomControl: true,
+          zoomControlOptions: {
+              position: google.maps.ControlPosition.LEFT_CENTER
+          },
+          scaleControl: true,
+          streetViewControl: true,
+          streetViewControlOptions: {
+              position: google.maps.ControlPosition.LEFT_TOP
+          },
+          fullscreenControl: true,
+          styles: mapStyle
+        });
+        /* global navigator */
+        var infoWindow = new google.maps.InfoWindow({map: map});
+        /* Finding and using location */
+		  if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(function(position) {
+					var pos = {
+						lat: position.coords.latitude,
+						lng: position.coords.longitude
+					};
+
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Location found.');
+            map.setCenter(pos);
+            map.zoom=10;
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }		
+		
+		
+      
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+      }
+  
+}
+//apply data points to map
+  $.when(ajax1()).done(function(){
+    var i;
+for(i=0; i<numberOfPoints; i++){
+  
+    var lat = parseFloat(mapPoints.Latitudes[i]);
+    var lng = parseFloat(mapPoints.Longitudes[i]);
+    var Offense = mapPoints.Offenses[i];
+    var Time = mapPoints.TimeStamps[i];
+    var myLatlng = {lat: lat, lng: lng};
+        
+        var marker = new google.maps.Marker({
+          position: myLatlng,
+          title: Offense + " at " + Time
+        });
+        marker.setMap(map);
+    }
+    
+  });
+
+  
+
+
+
+    </script>
+    <script>
+    /* global $ */
+    // was an attempt to move the box that allowed you to switch maps next to the logo
+      var pos = $("#img").position();
+      var width = $("#img").outerWidth();
+      $("#controls").css({
+        position: "absolute",
+        top: pos.top + "px",
+        left: (pos.left + width) + "px"
+      });
+    </script>
+   	<div class="footer" style="width: auto; height:auto;">Keep Kids Alive Drive 25® is a registered trademark of Keep Kids Alive Drive 25, 12418 C Street, Omaha, Nebraska, 68144 used with permission. No other entities may use these or similar marks without prior permission. Call 402-334-1391 or e-mail kkad25@kkad25.org for information.</div>
+</body>
+</head>

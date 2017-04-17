@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<title>About Us</title>
+<style>
+body {
+    font-family: "Lato", sans-serif;
+    transition: background-color .5s;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+	float: left;
+}
+
+img {
+	height: auto;
+	max-width: 50%;
+	background-color: red;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+	float: left;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-weight: 100;
+  font-size: 12px;
+  line-height: 30px;
+}
+
+.container {
+  max-width: 400px;
+  width: 100%;
+  position: relative;
+  margin: 58px;
+}
+
+#contact input[type="text"],
+#contact input[type="email"],
+#contact textarea,
+#contact button[type="submit"] {
+  font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
+}
+
+#contact {
+  background: #F9F9F9;
+  padding: 25px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+#contact h3 {
+  display: block;
+  font-size: 30px;
+  font-weight: 300;
+}
+
+#contact h4 {
+  margin: 5px 0 15px;
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+fieldset {
+  border: medium none !important;
+  min-width: 100%;
+  padding: 0;
+  width: 100%;
+}
+
+#contact input[type="text"],
+#contact input[type="email"],
+#contact textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  background: #FFF;
+  padding: 10px;
+}
+
+#contact input[type="text"]:hover,
+#contact input[type="email"]:hover,
+#contact textarea:hover {
+  -webkit-transition: border-color 0.3s ease-in-out;
+  -moz-transition: border-color 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out;
+  border: 1px solid #aaa;
+}
+
+#contact textarea {
+  height: 100px;
+  max-width: 100%;
+  resize: none;
+}
+
+#contact button[type="submit"] {
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  background: #4CAF50;
+  color: #FFF;
+  padding: 10px;
+  font-size: 15px;
+}
+
+#contact button[type="submit"]:hover {
+  background: #43A047;
+  -webkit-transition: background 0.3s ease-in-out;
+  -moz-transition: background 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#contact button[type="submit"]:active {
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.copyright {
+  text-align: center;
+}
+
+#contact input:focus,
+#contact textarea:focus {
+  outline: 0;
+  border: 1px solid #aaa;
+}
+
+::-webkit-input-placeholder {
+  color: #888;
+}
+
+:-moz-placeholder {
+  color: #888;
+}
+
+::-moz-placeholder {
+  color: #888;
+}
+
+:-ms-input-placeholder {
+  color: #888;
+}
+
+.footer{ 
+       position: fixed;     
+       text-align: center;    
+       bottom: 0px; 
+       width: 100%;
+   } 
+</style>
+</head>
+<body>
+<img id = "img" src = "download.jpg" align = "center" class = "img">
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="interactive_page.html">Report an Infaction</a>
+  <a href="home-page.html">Home</a>
+  <a href="about_page.html">About</a>
+  <a href="contactus.html">Contact</a>
+    <a href="http://keepkidsalivemap.x10host.com/Table.html">Data Table</a>
+</div>
+
+<div id="main">
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+</div>
+
+
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+	document.getElementById("img").style.backgroundColor = "rgba(255,0,0,0.4)";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+    document.body.style.backgroundColor = "white";
+	document.getElementById("img").style.backgroundColor = "rgba(255,0,0,1)";
+}
+</script>
+
+
+<h1 style = "font-size: 250%;"> Raising Awareness for Road Safety </h1>
+<p style = "font-size: 150%;"> The Keep Kids Alive Drive 25 is a campaign with the purpose of making streets 
+safer for every member of the community, with the safety of children being a priority
+effort. The organization works to educate many members of the community, from motorists,
+to standard pedestrians in order to help everyone be safe when on the road, driving or 
+otherwise. We urge members of the community to get our message of road safety across the 
+rest of the community, so that we can reduce the risk of vehicle related injuries in the 
+community. </p>
+
+
+
+<a href="http://www.keepkidsalivedrive25.org/">Keep Kids Alive Drive Main Page</a>
+<div class="footer" style="width: auto; height:auto;">Keep Kids Alive Drive 25® is a registered trademark of Keep Kids Alive Drive 25, 12418 C Street, Omaha, Nebraska, 68144 used with permission. No other entities may use these or similar marks without prior permission. Call 402-334-1391 or e-mail kkad25@kkad25.org for information.</div>
+</body>
+</html>
